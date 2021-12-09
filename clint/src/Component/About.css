@@ -1,0 +1,15 @@
+.continer{
+    border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.profile-edit-btn{
+    background-color:#4CAF50;
+    font-size: calc(5px + 2vmin);
+    color:rgb(243, 240, 240);
+    border-radius: 4px;
+    cursor: pointer;
+    float: left;
+    border: 1px  #ccc;
+    padding: 5px 6px;
+}
