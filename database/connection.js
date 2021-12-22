@@ -10,7 +10,7 @@ mongoose.connect(DB).then(()=>{
 
 // {
 //     useNewUrlParser:true,
-//     useCreateIndex:true,
+//     useCreateIndex:true,             this is callback fun
 //     useUnifiedTopology:true,
 //     useFindAndModify:false
 // }

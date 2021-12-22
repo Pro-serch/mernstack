@@ -109,6 +109,6 @@ userSchema.methods.addMessage=async function(name,email,phone,message){
 
 // collection create
 
-const myColllection=mongoose.model('MYCOLLLECTION',userSchema);
-module.exports = myColllection;
+const MyColllection=mongoose.model('MYCOLLLECTION',userSchema);
+module.exports = MyColllection;
 

@@ -1,5 +1,5 @@
  const jwt=require("jsonwebtoken");
- const myColllection= require("../modul/userSchema");
+ const MyColllection= require("../modul/userSchema");
 
  
  
@@ -7,7 +7,7 @@
 try{
 const token=req.cookies.jwtoken;
 const verifyToken=jwt.verify(token,process.env.SECRET_KEY);
-const rootUser=await myColllection.findOne({_id:verifyToken._id,"tokens.token":token});
+const rootUser=await MyColllection.findOne({_id:verifyToken._id,"tokens.token":token});
 if(!rootUser){
     throw new Error("User not found")
 }
@@ -17,9 +17,12 @@ req.rootUser=rootUser;
 req.userID=rootUser._id;
 next()
 
+
 }catch(err){
     res.status(401).send("Unauthorized:no token provided")
     console.log(error)
 }
  }
  module.exports=Authenticate;
+
+  

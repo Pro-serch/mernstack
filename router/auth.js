@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const authenticate=require("../middleware/authenticate"); 
 
 require('../database/connection');
-const myColllection= require("../modul/userSchema");
+const MyColllection= require("../modul/userSchema");
 
 
 router.get('/',(req,res)=>{
@@ -67,7 +67,7 @@ router.get('/',(req,res)=>{
 //             }).catch(err =>{console.log(err)});
 
 
-router.post('/api/register',async(req,res)=>{
+router.post('/register',async(req,res)=>{
     
     const{name,email,phone,work,password,cpassword}=req.body;
     // console.log(name);
@@ -77,7 +77,7 @@ router.post('/api/register',async(req,res)=>{
     }
     
     try{
-    const userExist = await myColllection.findOne({email:email});
+    const userExist = await MyColllection.findOne({email:email});
     if(userExist){
         return res.status(422).json({ 
             error: "Email already Exist"});
@@ -85,7 +85,7 @@ router.post('/api/register',async(req,res)=>{
         return res.status(422).json({ 
             error: "Email already Exist"});
     } else{
-        const user = new myColllection({name,email,phone,work,password,cpassword});
+        const user = new MyColllection({name,email,phone,work,password,cpassword});
         //   yeha p middle ware use kiaa
            await user.save();
             res.status(201).json({message: "user registered successfully"});
@@ -107,7 +107,7 @@ router.post('/api/register',async(req,res)=>{
                 error: "please fill the data"});
         }
    
-        const userLogin = await myColllection.findOne({email:email});
+        const userLogin = await MyColllection.findOne({email:email});
             // console.log(userLogin);
 if(userLogin){ 
     const isMatch = await bcrypt.compare(password,userLogin.password);
@@ -157,7 +157,7 @@ router.post('/contact',authenticate,async (req,res)=>{
 console.log("error in contact form");
 return res.json({error:"plzz filled the contact form"})
             }
-         const userContact=await myColllection.findOne({_id:req.userId});
+         const userContact=await MyColllection.findOne({_id:req.userId});
 
 if(userContact){
     const userMessage=await userContact.addMessage(name,email,phone,message)

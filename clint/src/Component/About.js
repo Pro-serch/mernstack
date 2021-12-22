@@ -5,43 +5,46 @@ const About = () => {
 const history = useHistory()
 
 const [userData, setUserData,] = useState('')
-    const callAboutpage = async ()=>{
-try{
-    const res=await fetch('/about',{
-method:"GET",
-headers:{
-    Accept:"application/jason", // for cockies
-    "Content-Type":"application/json"
-},
-credentials:"include"/// for token
-    });
- 
-     
 
-    const data=await res.json();
-    console.log(data);
-    setUserData(data);
 
-    if(!res.status===200){
-        const error=new Error(res.error);
-        throw error;
-    }
 
-}catch(err){
-console.log(err);
-history.push('/login');
-}
-    }
 useEffect(() => {
+    const callAboutpage = async ()=>{
+        try{
+            const res=await fetch('/about',{
+        method:"GET",
+        headers:{
+            Accept:"application/jason", // for cockies
+            "Content-Type":"application/json"
+        },
+        credentials:"include"/// for token
+            });
+         
+             
+        
+            const data=await res.json();
+            console.log(data);
+            setUserData(data);
+        
+            if(!res.status===200){
+                const error=new Error(res.error);
+                throw error;
+            }
+        
+        }catch(err){
+        console.log(err);
+        history.push('/login');
+        }
+            }
     callAboutpage();
- },[])
+ },[history,userData])
 
 
 
     return (
         <>
               <div className="continer emp-profile">
-                  <form>
+                  <form method="GET">
            {/* first grid        */}
   <div className="row">
     <div className="col-md-4">

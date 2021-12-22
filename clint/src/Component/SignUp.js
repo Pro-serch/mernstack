@@ -25,7 +25,7 @@ const postData=async(e)=>{
   e.preventDefault();
   const { name,email,phone,work,password,cpassword} =userRegistration
   const res = await fetch('/register',{
-    method:"POST",
+    method:'POST',
     headers:{
       "Content-Type":"application/json"
     }, 
